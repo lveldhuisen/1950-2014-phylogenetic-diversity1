@@ -11,8 +11,6 @@ DATA & CODE FILE OVERVIEW
 
 This repository has 3 folders (01_DataPrep, 02_Analyse, 03_Figures) and 15 total code scripts for all analyses and figures. Outside of the numbered code folders, this repository contains this README document, a git ignore, and empty folders for figures and results spreadsheets.
 
-Data files and variables (listed in the order they appear in the repository, not in the order they appear in the manuscript)
-
 
 REFERENCES
 
