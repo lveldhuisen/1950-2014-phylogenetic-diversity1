@@ -1,4 +1,5 @@
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 library(TTR)
 library(tidyquant)
 library(patchwork)
@@ -56,9 +57,8 @@ plot(precip)
 
 # combine 
 
-climate_fig <- max_temp + precip + 
-  plot_annotation(tag_levels = "A")
+climate_fig <- max_temp + min_temp + precip
 
 plot(climate_fig)
 
-ggsave("Figures/climate_fig.png", height = 7, width = 17, dpi = 600)
+ggsave("Figures/climate_fig.pdf", height = 7, width = 17)
