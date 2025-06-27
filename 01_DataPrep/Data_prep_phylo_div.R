@@ -718,6 +718,8 @@ phylo_list <- as.vector(all_list$all_list)
 
 # prune tree
 Zorio.tree <- drop.tip(SBtree,SBtree$tip.label[-match(phylo_list, SBtree$tip.label)]) 
+class(Zorio.tree)
+write.tree(Zorio.tree, "Data/Pruned_community_tree.tre")
 
 # check 
 plot(Zorio.tree)
