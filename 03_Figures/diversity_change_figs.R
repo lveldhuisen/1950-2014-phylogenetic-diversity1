@@ -76,13 +76,14 @@ all_pred_fig <- ggplot(all_pred) +
   geom_pointrange(mapping = aes(x = community, y= estimate, 
                                 ymin = conf.low,
                                 ymax = conf.high, 
-                                colour = metric), 
+                                colour = Metric), 
                   position = position_dodge(width = 0.2),
                   size = 0.8,
                   linewidth = 1.3)+
+  theme(axis.text.x = element_text(colour="black"))+
   theme_classic(base_size = 22)+
   ylab(Delta ~ "SES")+
-  xlab("Community type")+
+  xlab("Community Type")+
   scale_color_manual(values=c("#8FD744FF","#287C8EFF","#440154FF"))+
   geom_hline(yintercept = 0, color = "gray", linetype = "dashed", linewidth = 1.3)
 

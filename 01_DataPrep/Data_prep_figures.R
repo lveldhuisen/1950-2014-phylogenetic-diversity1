@@ -5,14 +5,14 @@ library(tidyverse)
 # pair plot data and use change in SES value for linear model ----------
 
 # with lumped
-pd_pred$metric <- "PD"
-mpd_pred$metric <- "MPD"
-mntd_pred$metric <- "MNTD"
+pd_pred$Metric <- "PD"
+mpd_pred$Metric <- "MPD"
+mntd_pred$Metric <- "MNTD"
 
 all_pred <- rbind(pd_pred, mpd_pred, mntd_pred)
 
 # order metrics to match
-all_pred$metric <- factor(all_pred$metric,
+all_pred$Metric <- factor(all_pred$Metric,
                               levels  = c("PD",
                                           "MPD",
                                           "MNTD"))
