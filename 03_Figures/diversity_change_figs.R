@@ -85,7 +85,10 @@ all_pred_fig <- ggplot(all_pred) +
   ylab(Delta ~ "SES")+
   xlab("Community Type")+
   scale_color_manual(values=c("#8FD744FF","#287C8EFF","#440154FF"))+
-  geom_hline(yintercept = 0, color = "gray", linetype = "dashed", linewidth = 1.3)
+  geom_hline(yintercept = 0, color = "gray", linetype = "dashed", linewidth = 1.3)+
+  theme(
+    legend.position = c(0.9, 0.9),
+    legend.background = element_rect(fill = alpha("white", 0.6), color = "black"))
 
 plot(all_pred_fig)
 ggsave("Figures/LM_withlumped.png", width = 12, height = 7, dpi = 600)
