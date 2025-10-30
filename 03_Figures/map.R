@@ -9,11 +9,11 @@ library(ggmapinset)
 
 
 # API key
-register_google(key = "AIzaSyDuTze63zSNtxg7BGSvpY0I-QRLK-q4OS4", write = TRUE)
+register_google(key = "", write = TRUE)
 
 # bring in gps data ----------
 gps <- read.csv("Data/Zorio_plot_locations.csv")
-register_stadiamaps("5673664f-130e-4a27-91df-b6c2d07ffd53", write = TRUE)
+register_stadiamaps("", write = TRUE)
 
 #reorder groups
 #replace site names with elevations
