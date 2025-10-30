@@ -5,6 +5,8 @@ library(ggspatial)
 library(tmap)
 library(grid)
 library(cowplot)
+library(ggmapinset)
+
 
 # API key
 register_google(key = "AIzaSyDuTze63zSNtxg7BGSvpY0I-QRLK-q4OS4", write = TRUE)
@@ -55,7 +57,7 @@ map <- get_stadiamap(bbox = c(left = -107.1, bottom = 38.52, right = -106.65, to
                      maptype = "stamen_terrain")
 ggmap(map)
 
-ggmap(map) +
+base_map <- ggmap(map) +
   geom_point(data = gps, aes(x = Long, y = Lat, colour = community), 
              size = 2)+
   theme(text = element_text(size = 18),
@@ -71,19 +73,33 @@ ggmap(map) +
 
 ggsave("Figures/map.jpeg", height = 18, width = 10, dpi = 600)
 
-# make map for inset ----
+# add inset ----
+usa <- map_data("state")
+western_states <- c("washington", "oregon", "california", "nevada", "idaho", 
+                    "montana", "wyoming", "utah", "colorado", "arizona", 
+                    "new mexico")
+western_usa <- subset(usa, region %in% western_states)
+colorado <- subset(usa, region == "colorado")
 
-df = data.frame(
-  lon = c(-106.9898),
-  lat = c(38.9592))
-  
-co_map <- get_stadiamap(bbox = c(left = -109.05, bottom = 37.0, right = -102.05, top = 41.0), 
-                     maptype = "stamen_toner_lite")
+gothic_coords <- data.frame(lon = -106.9878, lat = 38.9586)
 
-ggsave("Figures/insetmap.jpeg", height = 8, width = 12, dpi = 600)
+p_inset <- ggplot() +
+  geom_polygon(data = western_usa, 
+               aes(x = long, y = lat, group = group),
+               fill = "white", color = "gray50", size = 0.5) +
+  geom_point(data = gothic_coords,
+             aes(x = lon, y = lat),
+             shape = 8,  # star shape
+             size = 3,
+             color = "red") +
+  coord_fixed(1.4) +
+  theme_void() +
+  theme(panel.background = element_rect(fill = "white", color = "black"))
 
-co_map +
-  geom_point(data = df, aes(x=-106.9898, y=38.9592), color="red", size=10, alpha=0.5)
+map_final <- base_map +
+  inset_element(p_inset, 
+                left = 0, bottom = 0.0, 
+                right = 0.5, top = 0.3)
+print(map_final)
 
-map_obj <- ggmap(co_map)
-plot(map_obj)
+ggsave("Figures/map.jpeg", height = 18, width = 10, dpi = 600)
