@@ -722,7 +722,10 @@ class(Zorio.tree)
 write.tree(Zorio.tree, "Data/Pruned_community_tree.tre")
 
 # check 
-plot(Zorio.tree)
+plot(Zorio.tree, type = "fan", 
+     cex = 0.8,           # tip label size
+     tip.color = "black",   # tip label color
+     edge.width = 1.5)
 is.rooted(Zorio.tree)
 is.binary(Zorio.tree)
 Ntip(Zorio.tree)
