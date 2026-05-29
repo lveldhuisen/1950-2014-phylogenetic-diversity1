@@ -1099,5 +1099,7 @@ phylo_paired_df <- rbind(sb_df, sf_df, uh_df, a_df)
 # remove NAs from plots wtih only one species 
 phylo_paired_df_NL <- phylo_paired_df[!is.na(phylo_paired_df$SES_change),]
 
+
+
 # save as
 write.csv(phylo_paired_df_NL, "Data/Phylo_div_results/all_PD_paired_nolumped.csv")
