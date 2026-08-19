@@ -74,7 +74,7 @@ base_map <- ggmap(map) +
              size = 2)+
   theme(text = element_text(size = 18),
         axis.text.x = element_text(angle = 90, hjust = 1)) + 
-  scale_color_manual(values = c("yellow","#8FD744FF","#287C8EFF","#440154FF"))+
+  scale_color_manual(values = c("#CC79A7","#E69F00","#56B4E9","#0072B2"))+
   labs(color='Community Type', y = "Latitude", x = "Longitude")+
   annotation_north_arrow(
     location = "br",

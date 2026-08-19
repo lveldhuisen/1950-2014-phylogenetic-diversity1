@@ -16,7 +16,7 @@ max_df$ValueC <- fahrenheit.to.celsius(max_df$Value)
 
 # plot 
 max_temp <- ggplot(max_df, aes(x = Year, y = ValueC)) +
-  geom_smooth(se = F, size = 3, method = "loess") +
+  geom_smooth(se = F, linewidth = 3, method = "loess") +
   geom_line() + 
   #geom_ma(ma_fun = SMA, n = 5, color = "red") + 
   labs(x = "Year", y = "Average annual maximum temperature (°C)") +
