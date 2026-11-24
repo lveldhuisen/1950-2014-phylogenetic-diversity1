@@ -10,6 +10,10 @@ library(janitor)
 library(patchwork)
 library(car)
 
+library(ape)
+library(ggtree)
+library(ggplot2)
+
 # bring in phylogeny ---------
 SBtree <- read.tree("Data/ALLMB.tre")
 SBlist <- as.data.frame(SBtree$tip.label)
@@ -722,10 +726,20 @@ class(Zorio.tree)
 write.tree(Zorio.tree, "Data/Pruned_community_tree.tre")
 
 # check 
-plot(Zorio.tree, type = "fan", 
+tree_fig<- plot(Zorio.tree, type = "fan", 
      cex = 0.8,           # tip label size
      tip.color = "black",   # tip label color
-     edge.width = 1.5)
+     edge.width = 1.3)
+plot(tree_fig)
+
+p <- ggtree(Zorio.tree, layout = "fan", open.angle = 10, size = 0.3) +
+  geom_tiplab(size = 3.2, fontface = "italic", align = TRUE,
+              linesize = 0.1, linetype = "dotted", offset = 0.02) +
+  theme(plot.margin = margin(40, 40, 40, 40))
+plot(p)
+ggsave("Figures/Zorio_phylo.jpg", p, width = 14, height = 14, dpi = 800)
+
+ggsave("Figures/Phylogeny.jpg")
 is.rooted(Zorio.tree)
 is.binary(Zorio.tree)
 Ntip(Zorio.tree)
